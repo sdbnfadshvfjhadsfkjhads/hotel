@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Номери - Готель "Комфорт"</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🏨 Готель "Комфорт"</h1>
+            <nav>
+                <a href="index.html">Головна</a>
+                <a href="rooms.html">Номери</a>
+                <a href="booking.html">Бронювання</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="rooms">
+        <div class="container">
+            <h2>Наші номери</h2>
+            <div id="rooms-list">
+                <!-- Номери завантажаться з бекенду -->
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 Готель "Комфорт"</p>
+        </div>
+    </footer>
+
+    <script>
+        // Завантажуємо номери з бекенду
+        fetch('/api/rooms')
+            .then(response => response.json())
+            .then(rooms => {
+                const container = document.getElementById('rooms-list');
+                container.innerHTML = rooms.map(room => `
+                    <div class="room-card">
+                        <h3>${room.name}</h3>
+                        <p class="price">${room.price} грн/ніч</p>
+                        <p>${room.description}</p>
+                        <ul>
+                            ${room.features.map(feature => `<li>${feature}</li>`).join('')}
+                        </ul>
+                        <a href="booking.html" class="btn">Забронювати</a>
+                    </div>
+                `).join('');
+            });
+    </script>
+</body>
+</html>

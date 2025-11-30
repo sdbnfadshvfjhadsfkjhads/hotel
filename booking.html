@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бронювання - Готель "Комфорт"</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🏨 Готель "Комфорт"</h1>
+            <nav>
+                <a href="index.html">Головна</a>
+                <a href="rooms.html">Номери</a>
+                <a href="booking.html">Бронювання</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="booking">
+        <div class="container">
+            <h2>Бронювання номера</h2>
+            <form id="booking-form">
+                <input type="text" placeholder="Ваше ім'я" required>
+                <input type="email" placeholder="Email" required>
+                <input type="tel" placeholder="Телефон" required>
+                <input type="date" placeholder="Дата заїзду" required>
+                <input type="date" placeholder="Дата виїзду" required>
+                <select required>
+                    <option value="">Оберіть номер</option>
+                    <option value="standard">Стандарт (1500 грн)</option>
+                    <option value="suite">Напівлюкс (2500 грн)</option>
+                </select>
+                <button type="submit" class="btn">Забронювати</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 Готель "Комфорт"</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('booking-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Дякуємо за бронювання! Ми вам зателефонуємо.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
