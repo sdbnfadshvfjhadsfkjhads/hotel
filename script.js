@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const bookingForm = document.getElementById('bookingForm');
     if (bookingForm) {
-        bookingForm.addEventListener('submit', function(e) {
+        bookingForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const formData = {
@@ -26,11 +26,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
-            // Показати модальне вікно успіху
-            document.getElementById('successModal').style.display = 'block';
-            
-            // Очистити форму
-            this.reset();
+            // Відправка на сервер
+            try {
+                const response = await fetch('/api/bookings', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    // Показати модальне вікно успіху
+                    document.getElementById('successModal').style.display = 'block';
+                    // Очистити форму
+                    this.reset();
+                } else {
+                    alert('Помилка при бронюванні: ' + (result.error || 'Невідома помилка'));
+                }
+            } catch (error) {
+                console.error('Помилка:', error);
+                alert('Помилка з\'єднання з сервером');
+            }
         });
 
         // Встановлення мінімальної дати як сьогодні
@@ -57,3 +76,18 @@ window.addEventListener('click', function(event) {
         closeModal();
     }
 });
+
+// Додатково: функція для перевірки стану сервера
+async function checkServerStatus() {
+    try {
+        const response = await fetch('/api/stats');
+        if (response.ok) {
+            console.log('✅ Сервер працює');
+        }
+    } catch (error) {
+        console.log('⚠️ Сервер не доступний');
+    }
+}
+
+// Перевірити сервер при завантаженні сторінки
+window.addEventListener('load', checkServerStatus);
