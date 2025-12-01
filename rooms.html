@@ -3,54 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Номери - Готель "Комфорт"</title>
+    <title>Номери - Luxury Hotel</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <div class="container">
-            <h1>🏨 Готель "Комфорт"</h1>
+        <div class="nav-container">
+            <div class="logo">Готель "Волинь"</div>
             <nav>
-                <a href="index.html">Головна</a>
-                <a href="rooms.html">Номери</a>
-                <a href="booking.html">Бронювання</a>
+                <ul>
+                    <li><a href="index.html">Головна</a></li>
+                    <li><a href="rooms.html" class="active">Номери</a></li>
+                    <li><a href="amenities.html">Зручності</a></li>
+                    <li><a href="contact.html">Контакти</a></li>
+                    <li><a href="booking.html">Забронювати</a></li>
+                </ul>
             </nav>
         </div>
     </header>
 
+    <section class="rooms-hero">
+        <div class="hero-content">
+            <h1>Наші номери</h1>
+            <p>Виберіть ідеальний номер для вашого відпочинку</p>
+        </div>
+    </section>
+
     <section class="rooms">
         <div class="container">
-            <h2>Наші номери</h2>
-            <div id="rooms-list">
-                <!-- Номери завантажаться з бекенду -->
+            <div class="rooms-grid">
+                <div class="room-card">
+                    <div class="room-image">
+                        <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Люкс номер">
+                    </div>
+                    <div class="room-info">
+                        <h3>Люкс Suite</h3>
+                        <div class="room-price">₴5000/ніч</div>
+                        <ul class="room-features">
+                            <li>🛏️ Велике двоспальне ліжко</li>
+                            <li>🛁 Гідромасажна ванна</li>
+                            <li>🌅 Вид на море</li>
+                            <li>☕ Кавомолка</li>
+                            <li>📺 Smart TV 55"</li>
+                        </ul>
+                        <a href="booking.html" class="btn">Забронювати</a>
+                    </div>
+                </div>
+
+                <div class="room-card">
+                    <div class="room-image">
+                        <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Напівлюкс номер">
+                    </div>
+                    <div class="room-info">
+                        <h3>Напівлюкс</h3>
+                        <div class="room-price">₴3500/ніч</div>
+                        <ul class="room-features">
+                            <li>🛏️ Двоспальне ліжко</li>
+                            <li>🚿 Сучасний душ</li>
+                            <li>🏙️ Вид на місто</li>
+                            <li>📞 Обслуговування в номері</li>
+                            <li>📺 Smart TV 43"</li>
+                        </ul>
+                        <a href="booking.html" class="btn">Забронювати</a>
+                    </div>
+                </div>
+
+                <div class="room-card">
+                    <div class="room-image">
+                        <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Стандарт номер">
+                    </div>
+                    <div class="room-info">
+                        <h3>Стандарт</h3>
+                        <div class="room-price">₴2500/ніч</div>
+                        <ul class="room-features">
+                            <li>🛏️ Два односпальні ліжка</li>
+                            <li>🚿 Душова кабіна</li>
+                            <li>🪟 Вид у двір</li>
+                            <li>🧴 Туалетні приналежності</li>
+                            <li>📺 Телевізор 32"</li>
+                        </ul>
+                        <a href="booking.html" class="btn">Забронювати</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>© 2024 Готель "Комфорт"</p>
+            <p>УХЙ!</p>
         </div>
     </footer>
-
-    <script>
-        // Завантажуємо номери з бекенду
-        fetch('/api/rooms')
-            .then(response => response.json())
-            .then(rooms => {
-                const container = document.getElementById('rooms-list');
-                container.innerHTML = rooms.map(room => `
-                    <div class="room-card">
-                        <h3>${room.name}</h3>
-                        <p class="price">${room.price} грн/ніч</p>
-                        <p>${room.description}</p>
-                        <ul>
-                            ${room.features.map(feature => `<li>${feature}</li>`).join('')}
-                        </ul>
-                        <a href="booking.html" class="btn">Забронювати</a>
-                    </div>
-                `).join('');
-            });
-    </script>
 </body>
 </html>

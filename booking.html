@@ -3,52 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Бронювання - Готель "Комфорт"</title>
+    <title>Бронювання - Luxury Hotel</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <div class="container">
-            <h1>🏨 Готель "Комфорт"</h1>
+        <div class="nav-container">
+            <div class="logo">Готель "Волинь"</div>
             <nav>
-                <a href="index.html">Головна</a>
-                <a href="rooms.html">Номери</a>
-                <a href="booking.html">Бронювання</a>
+                <ul>
+                    <li><a href="index.html">Головна</a></li>
+                    <li><a href="rooms.html">Номери</a></li>
+                    <li><a href="amenities.html">Зручності</a></li>
+                    <li><a href="contact.html">Контакти</a></li>
+                    <li><a href="booking.html" class="active">Забронювати</a></li>
+                </ul>
             </nav>
         </div>
     </header>
 
+    <section class="booking-hero">
+        <div class="hero-content">
+            <h1>Бронювання номера</h1>
+            <p>Заповніть форму для резервування</p>
+        </div>
+    </section>
+
     <section class="booking">
         <div class="container">
-            <h2>Бронювання номера</h2>
-            <form id="booking-form">
-                <input type="text" placeholder="Ваше ім'я" required>
-                <input type="email" placeholder="Email" required>
-                <input type="tel" placeholder="Телефон" required>
-                <input type="date" placeholder="Дата заїзду" required>
-                <input type="date" placeholder="Дата виїзду" required>
-                <select required>
-                    <option value="">Оберіть номер</option>
-                    <option value="standard">Стандарт (1500 грн)</option>
-                    <option value="suite">Напівлюкс (2500 грн)</option>
-                </select>
-                <button type="submit" class="btn">Забронювати</button>
+            <form id="bookingForm" class="booking-form">
+                <div class="form-group">
+                    <label for="roomType">Тип номера:</label>
+                    <select id="roomType" name="roomType" required>
+                        <option value="">Оберіть номер</option>
+                        <option value="lux">Люкс Suite - ₴5000/ніч</option>
+                        <option value="junior">Напівлюкс - ₴3500/ніч</option>
+                        <option value="standard">Стандарт - ₴2500/ніч</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="checkIn">Дата заїзду:</label>
+                        <input type="date" id="checkIn" name="checkIn" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="checkOut">Дата виїзду:</label>
+                        <input type="date" id="checkOut" name="checkOut" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="adults">Дорослі:</label>
+                        <select id="adults" name="adults">
+                            <option value="1">1</option>
+                            <option value="2" selected>2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="children">Діти:</label>
+                        <select id="children" name="children">
+                            <option value="0" selected>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Повне ім'я:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Телефон:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="specialRequests">Особливі побажання:</label>
+                    <textarea id="specialRequests" name="specialRequests" rows="4"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-large">Забронювати</button>
             </form>
         </div>
     </section>
 
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Дякуємо за бронювання! 🎉</h2>
+            <p>Ми зв'яжемося з вами найближчим часом для підтвердження.</p>
+            <button class="btn" onclick="closeModal()">OK</button>
+        </div>
+    </div>
+
     <footer>
         <div class="container">
-            <p>© 2024 Готель "Комфорт"</p>
+            <p>УЙХ!</p>
         </div>
     </footer>
 
-    <script>
-        document.getElementById('booking-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Дякуємо за бронювання! Ми вам зателефонуємо.');
-            this.reset();
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
